@@ -1,0 +1,4 @@
+venv
+.idea
+downloaded_attestation/*
+backup.idea
