@@ -12,8 +12,8 @@ def get_email_text(first_name, last_name, year, month):
 
 
 def get_email_text_invalid_token():
-    body = "Bonjour,\n\rUne erreur s'est produite lors du telechargement de votre attestation. " \
-           "Merci de mettre a jours vos identifisants Navigo sur Navigogo"
+    body = "Bonjour,\n\rUne erreur s'est produite lors du téléchargement de votre attestation.\n\r" \
+           "Merci de mettre à jour vos identifiants Navigo sur Navigogo"
     subject = "Indentifiant Navigo expiré"
     return body, subject
 
