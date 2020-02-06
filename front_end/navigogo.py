@@ -27,7 +27,7 @@ app = Flask(__name__)
 app.secret_key = 'development key'
 
 
-@app.route('/register', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def contact():
     form = ContactForm()
 
@@ -45,11 +45,15 @@ def contact():
                 if not add_user(UserRecord(first_name=form.first_name.data, last_name=form.last_name.data,
                                            email=form.email.data, navigo_id=form.navigo_id.data,
                                            navigo_token=form.navigo_token.data, user_id=0)):
-                    return render_template('/unexpected_error')
+                    return render_template('/unexpected_error.html')
                 body, subject = success_email()
                 send_email(subject, body, [form.email.data])
                 return render_template('success.html')
     return render_template('register.html', form=form)
+
+@app.route('/s', methods=['GET', 'POST'])
+def suc():
+    return render_template('unexpected_error.html')
 
 
 if __name__ == '__main__':
