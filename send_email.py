@@ -24,7 +24,6 @@ def send_email(subject, body, to: [str], cc: [str] = [], bcc: [str] = [], filena
 
     # If an attachement is present include it in the email
     if filename:
-
         # Open PDF file in binary mode
         with open(filename, "rb") as attachment:
             # Add file as application/octet-stream
@@ -37,8 +36,8 @@ def send_email(subject, body, to: [str], cc: [str] = [], bcc: [str] = [], filena
 
         # Add header as key/value pair to attachment part
         part.add_header(
-            "Content-Disposition",
-            f"attachment; filename= {os.path.basename(filename)}",
+            'content-disposition', 'attachment',
+            filename=('utf-8', '', os.path.basename(filename))
         )
 
         # Add attachment to message
@@ -50,4 +49,4 @@ def send_email(subject, body, to: [str], cc: [str] = [], bcc: [str] = [], filena
     server = smtplib.SMTP("smtp.laposte.net:587")
     server.starttls()
     server.login(sender_email, password)
-    server.sendmail(sender_email, to+cc+bcc+[sender_email], text)
+    server.sendmail(sender_email, to + cc + bcc + [sender_email], text)
