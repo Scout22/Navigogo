@@ -22,7 +22,7 @@ def handle_valid_user(user):
         try:
             body, subject = text_generator.get_email_text(user.first_name, user.last_name, year, month)
             filename = f"{user.first_name.upper()}_{user.last_name.upper()}_{month}_{year}_attestation_navigo.pdf"
-            filename = os.path.join["downloaded_attestation", filename]
+            filename = os.path.join("downloaded_attestation", filename)
             download_attestation.download_attestation(user.navigo_id, user.navigo_token, filename, month, year)
             send_email.send_email(subject, body, [user.email], filename)
         except Exception as e:
