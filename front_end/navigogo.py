@@ -19,7 +19,7 @@ class ContactForm(FlaskForm):
     email = StringField("Email", [validators.DataRequired("Merci de remplir ce champ."),
                                   validators.email("Addresse email invalide")])
     navigo_token = StringField("Cookie Navigo", [validators.DataRequired("Merci de remplir ce champ.")])
-    navigo_id = IntegerField("Numéro d'attestation", [validators.DataRequired("Merci de remplir ce champ.")])
+    navigo_id = IntegerField("Numéro d'attestation", [validators.DataRequired("Merci de remplir ce champ avec votre numéro d'attestation.")])
     submit = SubmitField("Valider")
 
 

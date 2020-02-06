@@ -9,7 +9,7 @@ import database_interface
 def handle_exception(user, exception_msg):
     database_interface.report_non_functional_user(user.user_id)
     body, subject = text_generator.get_email_text_invalid_token()
-    send_email.send_email(subject, body, user.email)
+    send_email.send_email(subject, body, [user.email])
     return exception_msg
 
 
