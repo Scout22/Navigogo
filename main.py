@@ -25,15 +25,18 @@ def handle_valid_user(user):
             filename = os.path.join("downloaded_attestation", filename)
             download_attestation.download_attestation(user.navigo_id, user.navigo_token, filename, month, year)
             send_email.send_email(subject, body, [user.email], filename)
-        except Exception as e:
+        except AttributeError as e:
             error_msg = handle_exception(user, str(e))
         database_interface.add_attestation(user_id=user.user_id, error_msg=str(error_msg))
 
 
 def main():
     for user in database_interface.get_all_valid_users():
-        handle_valid_user(user)
+        try:
+            handle_valid_user(user)
+        except:
+            pass
 
 
-if __name__== "__main__":
+if __name__ == "__main__":
     main()
