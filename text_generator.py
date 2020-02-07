@@ -1,3 +1,4 @@
+import os
 MONTH_FR = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "novembre",
             "décembre"]
 
@@ -19,8 +20,11 @@ def get_email_text_invalid_token():
 
 
 def success_email():
-    body = "Votre inscription au service Navigogo, \n\r\n\r" \
+    body = "Votre inscription au service Navigogo: \n\r\n\r" \
            "Votre inscription au service d'envoie automatisé d'attestation Navigo est validée. " \
-           "Vous receverais dorenavant par email votre attestation Navigo avec le service RH en copie."
+           "Vous receverez dorénavant par email votre attestation Navigo avec le service RH en copie."
+    os.path.dirname(os.path.abspath(__file__))
+    with open("front_end/templates/success.html") as f :
+        body = f.read()
     subject = "Confirmation d'inscription au service Navigogo"
     return body, subject

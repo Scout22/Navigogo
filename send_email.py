@@ -15,6 +15,7 @@ def send_email(subject, body, to: [str], cc: [str] = [], bcc: [str] = [], filena
     # Create a multipart message and set headers
     message = MIMEMultipart()
     message["From"] = sender_email
+    message["Reply-To"] = ",".join(to)
     message["To"] = ",".join(to)
     message["CC"] = ",".join(cc)
     message["Subject"] = subject  # Recommended for mass emails

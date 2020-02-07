@@ -8,7 +8,7 @@ navigo_db = mysql.connector.connect(
     passwd=getenv("MYSQL_PASSWORD"),
     database="navigodb",
 )
-UserRecord = namedtuple("UserRecord", "first_name, last_name, email, navigo_id, navigo_token,user_id")
+UserRecord = namedtuple("UserRecord", "first_name, last_name, email, navigo_id, navigo_token,user_id, organization_id")
 
 
 def get_all_valid_users():
@@ -18,8 +18,18 @@ def get_all_valid_users():
     for row in cursor.fetchall():
         result.append(
             UserRecord(row["first_name"], row["last_name"], row["email"], row["navigo_pass_id"], row["navigo_token"],
-                       row["id"]))
+                       row["id"], row["organization_id"]))
     return result
+
+def get_organization_email(organization_id:int):
+    try:
+        cursor = navigo_db.cursor()
+        cursor.execute(f"SELECT organization_email from organizations WHERE id = {organization_id};")
+        return cursor.fetchone()[0]
+
+    except Exception as e:
+        print(f"Error in get_organization_email {e}")
+        return ""
 
 
 def add_attestation(user_id, error_msg=""):

@@ -28,7 +28,8 @@ def handle_valid_user(user):
             download_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)),"downloaded_attestation")
             filename = os.path.join(download_folder, filename)
             download_attestation.download_attestation(user.navigo_id, user.navigo_token, filename, month, year)
-            send_email.send_email(subject, body, [user.email], filename=filename)
+            organization_email = database_interface.get_organization_email(user.organization_id)
+            send_email.send_email(subject, body, [user.email, organization_email], filename=filename)
         except AttributeError as e:
             error_msg = handle_exception(user, str(e))
         database_interface.add_attestation(user_id=user.user_id, error_msg=str(error_msg))

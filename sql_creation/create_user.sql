@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 	`navigo_token` varchar(255),
 	`navigo_pass_id` BIGINT,
 	`functional` BOOLEAN,
+	`organization_id` int(10),
 	`created_at` TIMESTAMP,
 	PRIMARY KEY( `id` )
 );
