@@ -31,8 +31,8 @@ def add_attestation(user_id, error_msg=""):
                        {'user_id': user_id, 'error_msg': error_msg, 'status': 1 if error_msg else 0})
 
         navigo_db.commit()
-    except:
-        return False
+    except Exception as e:
+        print(f"Error in add attestation {e}")
     return True
 
 
@@ -63,6 +63,7 @@ def add_user(user: UserRecord):
                         'navigo_token': user.navigo_token, 'navigo_pass_id': user.navigo_id, 'email': user.email})
 
         navigo_db.commit()
-    except:
+    except Exception as e:
+        print(f"Error in add User {e}")
         return False
     return True
