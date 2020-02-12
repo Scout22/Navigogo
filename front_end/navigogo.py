@@ -19,7 +19,7 @@ class ContactForm(FlaskForm):
     email = StringField("Email", [validators.DataRequired("Merci de remplir ce champ."),
                                   validators.email("Addresse email invalide")])
     navigo_token = StringField("Cookie Navigo", [validators.DataRequired("Merci de remplir ce champ.")])
-    navigo_id = IntegerField("Numéro d'attestation", [validators.DataRequired("Merci de remplir ce champ avec votre numéro d'attestation.")])
+    navigo_id = StringField("Numéro d'attestation", [validators.DataRequired("Merci de remplir ce champ avec votre numéro d'attestation.")])
     submit = SubmitField("Valider")
 
 
@@ -44,7 +44,7 @@ def contact():
             if not errors:
                 if not add_user(UserRecord(first_name=form.first_name.data, last_name=form.last_name.data,
                                            email=form.email.data, navigo_id=form.navigo_id.data,
-                                           navigo_token=form.navigo_token.data, user_id=0)):
+                                           navigo_token=form.navigo_token.data, user_id=0,organization_id=0)):
                     return render_template('/unexpected_error.html')
                 body, subject = success_email()
                 send_email(subject, body, [form.email.data])

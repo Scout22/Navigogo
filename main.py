@@ -12,14 +12,15 @@ def handle_exception(user, exception_msg):
     database_interface.report_non_functional_user(user.user_id)
     body, subject = text_generator.get_email_text_invalid_token()
     send_email.send_email(subject, body, [user.email])
+    print(exception_msg)
     return exception_msg
 
 
 def handle_valid_user(user):
     year = date.today().year
     month = date.today().month
-
     if not database_interface.is_attestation_sent_for_month(user.user_id, month, year):
+        print(f"Sending attestation for user {user.first_name} {user.last_name}\n")
         error_msg = ""
         try:
             body, subject = text_generator.get_email_text(user.first_name, user.last_name, year, month)

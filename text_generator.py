@@ -23,8 +23,6 @@ def success_email():
     body = "Votre inscription au service Navigogo: \n\r\n\r" \
            "Votre inscription au service d'envoie automatisé d'attestation Navigo est validée. " \
            "Vous receverez dorénavant par email votre attestation Navigo avec le service RH en copie."
-    os.path.dirname(os.path.abspath(__file__))
-    with open("front_end/templates/success.html") as f :
-        body = f.read()
+
     subject = "Confirmation d'inscription au service Navigogo"
     return body, subject
