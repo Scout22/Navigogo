@@ -37,6 +37,7 @@ def handle_valid_user(user):
 
 
 def main():
+    print("Running Navigogo...")
     for user in database_interface.get_all_valid_users():
         try:
             handle_valid_user(user)
