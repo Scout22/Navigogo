@@ -38,7 +38,7 @@ def contact():
             if not token_valid:
                 form.navigo_token.errors.append("Token invalid")
                 errors = True
-            if not token_valid:
+            if not user_id_valid:
                 form.navigo_id.errors.append("Numéro d'attestation invalid")
                 errors = True
             if not errors:
