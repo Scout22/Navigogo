@@ -1,10 +1,9 @@
 import os
-MONTH_FR = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "novembre",
-            "décembre"]
+MONTH_FR = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"]
 
 
 def get_email_text(first_name, last_name, year, month):
-    body = f"Bonjour,\n\rMerci de trouver en piece jointe l'attestation de transport correspondant au mois de " \
+    body = f"Bonjour,\n\rMerci de trouver en pièce jointe l'attestation de transport correspondant au mois de " \
         f"{MONTH_FR[month - 1]} {year}." \
         f"\n\rCordialement.\n\r\n\r" \
         f"{first_name.capitalize()} {last_name.upper()}"
